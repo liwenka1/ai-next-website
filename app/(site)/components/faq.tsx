@@ -46,7 +46,7 @@ const Faq = () => {
 
   return (
     <section id="faq" className="container mx-auto">
-      <Faq3 {...demoData} />;
+      <Faq3 {...demoData} />
     </section>
   );
 };
