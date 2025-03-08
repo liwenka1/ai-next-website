@@ -45,7 +45,7 @@ const Faq = () => {
   };
 
   return (
-    <section id="faq" className="container mx-auto">
+    <section id="faq" className="container">
       <Faq3 {...demoData} />
     </section>
   );

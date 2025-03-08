@@ -2,7 +2,9 @@
 
 @plugin "tailwindcss-animate";
 
-/* @config "../tailwind.config.js"; */
+@utility container {
+  @apply mx-auto p-2;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -125,4 +127,7 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@theme {
 }

@@ -1,5 +1,5 @@
 const Cta = () => {
-  return <section id="cta">cta</section>
-}
+  return <section id="cta">cta</section>;
+};
 
-export default Cta
+export default Cta;
