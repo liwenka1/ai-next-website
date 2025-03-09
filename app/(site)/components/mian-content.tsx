@@ -11,13 +11,17 @@ const MainContent = () => {
   const [prompt, setPrompt] = useState("");
   const { bigmodelGenerations } = useImagesApi();
   const [imgUrl, setImgUrl] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleGeneration = async () => {
+    setLoading(true);
     try {
       const res = await bigmodelGenerations(prompt);
       console.log(res, "res");
       setImgUrl(res.data.data[0].url);
     } catch (error) {
       console.log(error, "error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,7 +37,7 @@ const MainContent = () => {
           {imgUrl && <Image className="rounded-md" width="1024" height="1024" src={imgUrl} alt="img" />}
         </CardContent>
         <CardFooter>
-          <Button type="button" onClick={handleGeneration}>
+          <Button className="cursor-pointer" type="button" onClick={handleGeneration} disabled={loading}>
             生成
           </Button>
         </CardFooter>
