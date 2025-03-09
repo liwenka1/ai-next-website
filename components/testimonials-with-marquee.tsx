@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { TestimonialCard, TestimonialAuthor } from "@/components/ui/testimonial-card";
+import type { TestimonialAuthor } from "@/components/ui/testimonial-card";
+import { TestimonialCard } from "@/components/ui/testimonial-card";
 
 interface TestimonialsSectionProps {
   title: string;

@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
@@ -30,7 +31,7 @@ export const AuroraBackground = ({
 
               showRadialGradient && `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
             )}
-          ></div>
+           />
         </div>
         {children}
       </div>

@@ -4,14 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Footer = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
