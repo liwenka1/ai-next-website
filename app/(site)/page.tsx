@@ -7,7 +7,6 @@ import Testimonials from "./components/testimonials";
 const Site = () => {
   return (
     <>
-      {/* <Background /> */}
       <MainContent />
       <Features />
       <Cta />
