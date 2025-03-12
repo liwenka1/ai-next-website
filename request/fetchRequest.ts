@@ -1,27 +1,22 @@
-// lib/api.ts
-
 // 基础配置
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 if (!BASE_URL) throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
 
-// 精确类型定义
-type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-
-interface RequestOptions extends Omit<RequestInit, "method"> {
-  method?: HttpMethod;
-  data?: Record<string, any>;
-  headers?: Record<string, string>;
+export interface ResponseData<T> {
+  success: boolean;
+  data: T;
+  timestamp: string;
 }
 
-export const fetchRequest = async <T = any>(
+export const fetchRequest = async <T = unknown>(
   endpoint: string,
-  { data, headers, method = "GET", ...customConfig }: RequestOptions = {}
+  { body, headers, method = "GET", ...customConfig }: RequestInit = {}
 ): Promise<T> => {
   // 处理 GET 请求的查询参数
   let finalUrl = `${BASE_URL}${endpoint}`;
 
-  if (method === "GET" && data) {
-    const queryParams = new URLSearchParams(data).toString();
+  if (method === "GET" && body && typeof body === "string") {
+    const queryParams = new URLSearchParams(body).toString();
     finalUrl += `?${queryParams}`;
   }
 
@@ -35,8 +30,8 @@ export const fetchRequest = async <T = any>(
   };
 
   // 非 GET 请求才允许携带 body
-  if (method !== "GET" && data) {
-    config.body = JSON.stringify(data);
+  if (method !== "GET" && body) {
+    config.body = body;
   }
 
   try {
@@ -57,7 +52,9 @@ export const fetchRequest = async <T = any>(
       throw new Error(errorMessage);
     }
 
-    return response.json() as Promise<T>;
+    const result = await (response.json() as Promise<ResponseData<T>>);
+
+    return result.data;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`API Error: ${error.message}`);

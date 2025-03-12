@@ -19,7 +19,7 @@ const MainContent = () => {
     try {
       const res = await bigmodelGenerations(prompt);
       console.log(res, "res");
-      setImgUrl(res.data.data[0].url);
+      setImgUrl(res.data[0].url);
     } catch (error) {
       console.log(error, "error");
     } finally {
