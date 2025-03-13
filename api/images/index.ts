@@ -1,20 +1,11 @@
 import { fetchRequest } from "@/request/fetchRequest";
 
-export interface BigmodelGenerationsResponse {
-  created: number;
-  data: Daum[];
-}
-
-export interface Daum {
-  url: string;
-}
+import type { BigmodelGenerationsRequest, BigmodelGenerationsResponse } from "./type";
 
 export const useImagesApi = () => {
-  const bigmodelGenerations = (prompt: string) => {
+  const bigmodelGenerations = (params: BigmodelGenerationsRequest) => {
     return fetchRequest<BigmodelGenerationsResponse>("/images/bigmodel/generations", {
-      body: JSON.stringify({
-        prompt
-      }),
+      body: JSON.stringify(params),
       method: "POST"
     });
   };
