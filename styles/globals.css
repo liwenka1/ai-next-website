@@ -121,6 +121,18 @@
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+  /* html tag is required here to provide higher specificity */
+  html {
+    @supports (scrollbar-gutter: stable) {
+      body {
+        margin: 0 !important;
+      }
+    }
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
