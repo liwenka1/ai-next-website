@@ -13,6 +13,15 @@ import { useVideosApi } from "@/api/videos";
 import type { BigmodelGenerationsRequest } from "@/api/videos/type";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+  DialogHeader
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const VideoContent = () => {
   const [prompt, setPrompt] = useState<BigmodelGenerationsRequest["prompt"]>("");
@@ -57,6 +66,7 @@ const VideoContent = () => {
   const [id, setId] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [generationTitle, setGenerationTitle] = useState("");
   const handleGeneration = async () => {
     setGenerationTitle(prompt);
     setLoading(true);
@@ -134,7 +144,12 @@ const VideoContent = () => {
     };
   }, [asyncResult, id, isPolling, maxRetries, pollingCount]);
 
-  const [generationTitle, setGenerationTitle] = useState("");
+  const [openValue, setOpenValue] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const saveImgUrl = () => {
+    setOpenValue(false);
+    setImgUrl(inputValue);
+  };
 
   return (
     <section id="videoContent" className="container flex flex-col gap-6">
@@ -157,10 +172,40 @@ const VideoContent = () => {
               <Switch id="withAudio" checked={withAudio} onCheckedChange={(v) => setWithAudio(v)} />
             </div>
             <Button className="cursor-pointer" type="button" onClick={() => fileInputRef.current?.click()}>
-              上传图片
+              上传图片文件
             </Button>
+            <Dialog open={openValue} onOpenChange={(v) => setOpenValue(v)}>
+              <DialogTrigger asChild>
+                <Button className="cursor-pointer" type="button">
+                  上传图片链接
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>上传图片链接</DialogTitle>
+                  <DialogDescription>
+                    图片要求如下：图片支持.png、.jpeg、.jpg 格式、图片大小：不超过5M。
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex items-center gap-4">
+                  <Input
+                    placeholder="输入图片链接"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <Button className="cursor-pointer" type="button" onClick={saveImgUrl}>
+                    保存
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
-          <Button className="cursor-pointer" type="button" onClick={handleGeneration} disabled={loading || !prompt}>
+          <Button
+            className="cursor-pointer"
+            type="button"
+            onClick={handleGeneration}
+            disabled={loading || (!prompt && !imgUrl)}
+          >
             生成
           </Button>
         </CardFooter>
