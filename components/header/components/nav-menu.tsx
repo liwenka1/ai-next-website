@@ -17,8 +17,13 @@ export function NavMenu() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
+            <Link href="#features" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>功能</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="#faq" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>常见问题</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
