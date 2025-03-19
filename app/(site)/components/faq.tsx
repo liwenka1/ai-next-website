@@ -1,52 +1,66 @@
-import { Faq3 } from "@/components/faq3";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
+interface FAQProps {
+  question: string;
+  answer: string;
+  value: string;
+}
+
+const FAQList: FAQProps[] = [
+  {
+    question: "Is this template free?",
+    answer: "Yes. It is a free ChadcnUI template.",
+    value: "item-1"
+  },
+  {
+    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+    value: "item-2"
+  },
+  {
+    question: "Lorem ipsum dolor sit amet  Consectetur natus dolores minus quibusdam?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis necessitatibus maxime quis ipsa vitae cumque quo?",
+    value: "item-3"
+  },
+  {
+    question: "Lorem ipsum dolor sit amet, consectetur adipisicing elit?",
+    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    value: "item-4"
+  },
+  {
+    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur natus?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+    value: "item-5"
+  }
+];
 
 const Faq = () => {
-  const demoData = {
-    heading: "Frequently asked questions",
-    description:
-      "Everything you need to know about shadcnblocks. Can't find the answer you're looking for? Feel free to contact our support team.",
-    items: [
-      {
-        id: "faq-1",
-        question: "What is shadcnblocks?",
-        answer:
-          "shadcnblocks is a collection of ready-to-use block components built on top of shadcn/ui, designed to help you build beautiful websites faster."
-      },
-      {
-        id: "faq-2",
-        question: "How do I install shadcnblocks?",
-        answer:
-          "shadcnblocks components are designed to be copied and pasted into your project. Simply browse the components, click on the one you want to use, and copy the code directly into your project. This gives you full control over the code and allows for easy customization."
-      },
-      {
-        id: "faq-3",
-        question: "Is shadcnblocks free to use?",
-        answer:
-          "Yes, shadcnblocks is open-source and free to use in both personal and commercial projects. You can customize and modify the blocks to suit your needs."
-      },
-      {
-        id: "faq-4",
-        question: "Can I customize the blocks?",
-        answer:
-          "Absolutely! All blocks are built with customization in mind. You can modify the styling, content, and behavior through props and Tailwind CSS classes."
-      },
-      {
-        id: "faq-5",
-        question: "Do you offer support?",
-        answer:
-          "Yes, we provide support through our GitHub repository where you can report issues, suggest features, or ask questions about implementation."
-      }
-    ],
-    supportHeading: "Still have questions?",
-    supportDescription:
-      "Can't find the answer you're looking for? Our support team is here to help with any technical questions or concerns.",
-    supportButtonText: "Contact Support",
-    supportButtonUrl: "https://shadcnblocks.com"
-  };
-
   return (
-    <section id="faq" className="container">
-      <Faq3 {...demoData} />
+    <section id="faq" className="container py-24 sm:py-32">
+      <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+        Frequently Asked{" "}
+        <span className="from-primary/60 to-primary bg-gradient-to-b bg-clip-text text-transparent">Questions</span>
+      </h2>
+
+      <Accordion type="single" collapsible className="AccordionRoot w-full">
+        {FAQList.map(({ question, answer, value }: FAQProps) => (
+          <AccordionItem key={value} value={value}>
+            <AccordionTrigger className="text-left">{question}</AccordionTrigger>
+
+            <AccordionContent>{answer}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+
+      <h3 className="mt-4 font-medium">
+        Still have questions?{" "}
+        <a rel="noreferrer noopener" href="#" className="text-primary border-primary transition-all hover:border-b-2">
+          Contact us
+        </a>
+      </h3>
     </section>
   );
 };

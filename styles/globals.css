@@ -3,7 +3,7 @@
 @plugin "tailwindcss-animate";
 
 @utility container {
-  @apply mx-auto p-2;
+  @apply mx-auto p-6;
 }
 
 @custom-variant dark (&:is(.dark *));
