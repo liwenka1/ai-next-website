@@ -13,18 +13,10 @@ const Hero = () => {
         </span>
         <span className="text-foreground/70 text-base sm:text-lg">✨ 世界首个免费无限制AI图像生成器 ✨</span>
         <div className="flex gap-3">
-          <Badge className="bg-amber-600" variant="outline">
-            100% 免费
-          </Badge>
-          <Badge className="bg-amber-600" variant="outline">
-            100% 免费
-          </Badge>
-          <Badge className="bg-amber-600" variant="outline">
-            100% 免费
-          </Badge>
-          <Badge className="bg-amber-600" variant="outline">
-            100% 免费
-          </Badge>
+          <Badge>100% 免费</Badge>
+          <Badge>100% 免费</Badge>
+          <Badge>100% 免费</Badge>
+          <Badge>100% 免费</Badge>
         </div>
       </div>
     </section>
