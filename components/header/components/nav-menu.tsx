@@ -27,6 +27,11 @@ export function NavMenu() {
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>常见问题</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="#sponsor" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>赞助</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
 

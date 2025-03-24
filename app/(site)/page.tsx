@@ -2,6 +2,7 @@ import Faq from "./components/faq";
 import Features from "./components/features";
 import Hero from "./components/hero";
 import MainContent from "./components/mian-content";
+import Sponsor from "./components/sponsor";
 import Testimonials from "./components/testimonials";
 
 const Site = () => {
@@ -12,6 +13,7 @@ const Site = () => {
       <Features />
       <Testimonials />
       <Faq />
+      <Sponsor />
     </>
   );
 };
