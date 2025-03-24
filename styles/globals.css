@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 @utility container {
-  @apply mx-auto px-6 py-2;
+  @apply mx-auto px-6 py-4;
 }
 
 @custom-variant dark (&:is(.dark *));

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Github, Twitter } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
@@ -11,7 +12,16 @@ const Footer = () => {
       <div className="container px-4 py-12 md:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight">VVen AI</h2>
+            <Link href="/" className="mb-4 flex items-center gap-4 text-3xl font-bold tracking-tight">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                className="h-10 w-10 overflow-hidden rounded-full object-contain"
+                width="200"
+                height="200"
+              />
+              VVen AI
+            </Link>
             <p className="text-muted-foreground mb-6">
               VVen AI：完全免费、无限制 AI 图像生成器，视频生成器。无需注册，没有使用限制。
             </p>
@@ -75,8 +85,8 @@ const Footer = () => {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-muted-foreground text-sm">© 2025 • VVen AI 保留所有权利。</p>
           <nav className="flex gap-4 text-sm">
-            <Link href="#">隐私政策</Link>
-            <Link href="#">服务条款</Link>
+            <Link href="/privacy">隐私政策</Link>
+            <Link href="/terms">服务条款</Link>
           </nav>
         </div>
       </div>

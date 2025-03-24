@@ -39,8 +39,11 @@ const FAQList: FAQProps[] = [
 
 const Faq = () => {
   return (
-    <section id="faq" className="container py-24 sm:py-32">
-      <h2 className="mb-4 text-3xl font-bold md:text-4xl">常见问题解答</h2>
+    <section id="faq" className="container space-y-8 py-24 sm:py-32">
+      <h2 className="space-y-4 text-3xl font-bold md:text-center lg:text-4xl">
+        <p> 常见问题解答</p>
+        <p className="text-muted-foreground text-center text-base">还有其他问题？请发邮件至 2020583117@qq.com</p>
+      </h2>
 
       <Accordion type="single" collapsible className="AccordionRoot w-full">
         {FAQList.map(({ question, answer, value }: FAQProps) => (

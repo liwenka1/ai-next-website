@@ -9,7 +9,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 
 export function NavMenu() {
@@ -36,9 +36,9 @@ export function NavMenu() {
       </NavigationMenu>
 
       <div className="flex items-center gap-4">
-        <Button className="cursor-pointer" type="button">
+        {/* <Button className="cursor-pointer" type="button">
           Login
-        </Button>
+        </Button> */}
         <ModeToggle />
       </div>
     </div>

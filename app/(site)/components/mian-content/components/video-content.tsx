@@ -68,6 +68,7 @@ const VideoContent = () => {
   const [loading, setLoading] = useState(false);
   const [generationTitle, setGenerationTitle] = useState("");
   const handleGeneration = async () => {
+    setVideoUrl("");
     setGenerationTitle(prompt);
     setLoading(true);
     try {

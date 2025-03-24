@@ -72,7 +72,7 @@ const Testimonials = () => {
     <section id="testimonials" className="container space-y-8">
       <h2 className="space-y-4 text-3xl font-bold md:text-center lg:text-4xl">
         <p> 用户对 VVen AI 的评价</p>
-        <p className="text-muted-foreground text-center lg:text-lg">
+        <p className="text-muted-foreground text-center text-base">
           听取每天使用我们 AI 图像生成器的创作者和专业人士的意见。
         </p>
       </h2>

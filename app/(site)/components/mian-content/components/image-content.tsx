@@ -20,6 +20,7 @@ const ImageContent = () => {
   const [imgUrl, setImgUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const handleGeneration = async () => {
+    setImgUrl("");
     setGenerationTitle(prompt);
     setLoading(true);
     try {
