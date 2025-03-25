@@ -153,7 +153,7 @@ const VideoContent = () => {
   };
 
   return (
-    <section id="videoContent" className="container flex flex-col gap-6">
+    <section id="videoContent" className="container flex flex-col gap-6 py-20">
       <Card>
         <CardHeader>
           <CardTitle>AI 视频生成器</CardTitle>

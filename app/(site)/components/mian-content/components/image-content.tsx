@@ -38,7 +38,7 @@ const ImageContent = () => {
   const [generationTitle, setGenerationTitle] = useState("");
 
   return (
-    <section id="imageContent" className="container flex flex-col gap-6">
+    <section id="imageContent" className="container flex flex-col gap-6 py-20">
       <Card>
         <CardHeader>
           <CardTitle>AI 图像生成器</CardTitle>
