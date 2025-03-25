@@ -82,6 +82,7 @@ const CreationShowcase = () => {
                   className="w-full rounded-md transition-all hover:scale-105"
                   width="864"
                   height="1152"
+                  unoptimized
                 />
               </Link>
             </div>

@@ -161,7 +161,9 @@ const VideoContent = () => {
         </CardHeader>
         <CardContent>
           <div className="flex gap-4">
-            {imgUrl && <Image className="h-36 w-auto rounded-md" width="1024" height="1024" src={imgUrl} alt="img" />}
+            {imgUrl && (
+              <Image className="h-36 w-auto rounded-md" width="1024" height="1024" src={imgUrl} alt="img" unoptimized />
+            )}
             <Textarea className="mb-5 h-36 resize-none" value={prompt} onChange={(e) => setPrompt(e.target.value)} />
           </div>
         </CardContent>

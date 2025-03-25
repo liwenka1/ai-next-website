@@ -13,6 +13,7 @@ const Header = () => {
             className="h-10 w-10 overflow-hidden rounded-full object-contain"
             width="200"
             height="200"
+            unoptimized
           />
           <span className="text-xl font-bold">VVen AI</span>
         </Link>

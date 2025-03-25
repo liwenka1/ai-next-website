@@ -72,6 +72,7 @@ const Features = () => {
                 className="mx-auto w-[200px] rounded-md lg:w-[300px]"
                 width="1024"
                 height="1024"
+                unoptimized
               />
             </CardFooter>
           </Card>

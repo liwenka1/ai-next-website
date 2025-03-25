@@ -18,6 +18,7 @@ const Sponsor = () => {
             className="object-contains h-full w-full overflow-hidden rounded-md"
             width="1024"
             height="1024"
+            unoptimized
           />
         </div>
         <div className="mx-2 h-[300px] max-w-[200px] lg:h-[400px] lg:max-w-[300px]">
@@ -27,6 +28,7 @@ const Sponsor = () => {
             className="h-full w-full overflow-hidden rounded-md object-contain"
             width="1024"
             height="1024"
+            unoptimized
           />
         </div>
       </div>

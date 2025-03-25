@@ -19,6 +19,7 @@ const Footer = () => {
                 className="h-10 w-10 overflow-hidden rounded-full object-contain"
                 width="200"
                 height="200"
+                unoptimized
               />
               VVen AI
             </Link>

@@ -76,7 +76,14 @@ const ImageContent = () => {
           <CardContent>
             <div className="h-72">
               {imgUrl ? (
-                <Image className="h-full w-auto rounded-md" width="1024" height="1024" src={imgUrl} alt="img" />
+                <Image
+                  className="h-full w-auto rounded-md"
+                  width="1024"
+                  height="1024"
+                  src={imgUrl}
+                  alt="img"
+                  unoptimized
+                />
               ) : (
                 <div className="bg-accent flex h-full w-1/4 items-center justify-center rounded-md">
                   <Loader className="animate-spin" />
