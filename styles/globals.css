@@ -161,6 +161,11 @@
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
+
+  [role="button"],
+  button {
+    @apply cursor-pointer;
+  }
 }
 
 @theme inline {

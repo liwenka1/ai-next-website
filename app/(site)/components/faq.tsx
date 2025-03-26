@@ -47,8 +47,8 @@ const Faq = () => {
 
       <Accordion type="single" collapsible className="AccordionRoot w-full">
         {FAQList.map(({ question, answer, value }: FAQProps) => (
-          <AccordionItem className="cursor-pointer" key={value} value={value}>
-            <AccordionTrigger className="cursor-pointer text-left">{question}</AccordionTrigger>
+          <AccordionItem key={value} value={value}>
+            <AccordionTrigger className="text-left">{question}</AccordionTrigger>
 
             <AccordionContent>{answer}</AccordionContent>
           </AccordionItem>

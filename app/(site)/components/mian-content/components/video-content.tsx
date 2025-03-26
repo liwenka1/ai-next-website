@@ -174,14 +174,12 @@ const VideoContent = () => {
               <Label htmlFor="withAudio">生成声音</Label>
               <Switch id="withAudio" checked={withAudio} onCheckedChange={(v) => setWithAudio(v)} />
             </div>
-            <Button className="cursor-pointer" type="button" onClick={() => fileInputRef.current?.click()}>
+            <Button type="button" onClick={() => fileInputRef.current?.click()}>
               上传图片文件
             </Button>
             <Dialog open={openValue} onOpenChange={(v) => setOpenValue(v)}>
               <DialogTrigger asChild>
-                <Button className="cursor-pointer" type="button">
-                  上传图片链接
-                </Button>
+                <Button type="button">上传图片链接</Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -196,19 +194,14 @@ const VideoContent = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                   />
-                  <Button className="cursor-pointer" type="button" onClick={saveImgUrl}>
+                  <Button type="button" onClick={saveImgUrl}>
                     保存
                   </Button>
                 </div>
               </DialogContent>
             </Dialog>
           </div>
-          <Button
-            className="cursor-pointer"
-            type="button"
-            onClick={handleGeneration}
-            disabled={loading || (!prompt && !imgUrl)}
-          >
+          <Button type="button" onClick={handleGeneration} disabled={loading || (!prompt && !imgUrl)}>
             生成
           </Button>
         </CardFooter>

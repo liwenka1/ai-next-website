@@ -28,6 +28,11 @@ export function NavMenu() {
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
+            <Link href="/pricing">
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>定价</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
             <Link href="#sponsor" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>赞助</NavigationMenuLink>
             </Link>

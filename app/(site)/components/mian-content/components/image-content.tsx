@@ -63,7 +63,7 @@ const ImageContent = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Button className="cursor-pointer" type="button" onClick={handleGeneration} disabled={loading || !prompt}>
+          <Button type="button" onClick={handleGeneration} disabled={loading || !prompt}>
             生成
           </Button>
         </CardFooter>
