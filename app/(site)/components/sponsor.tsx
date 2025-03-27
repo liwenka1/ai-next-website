@@ -15,7 +15,7 @@ const Sponsor = () => {
           <Image
             src="/wx-pay.jpg"
             alt="About sponsor"
-            className="object-contains h-full w-full overflow-hidden rounded-md"
+            className="h-full w-full overflow-hidden rounded-md object-contain"
             width="1024"
             height="1024"
             unoptimized

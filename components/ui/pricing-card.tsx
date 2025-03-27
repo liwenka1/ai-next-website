@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./dialog";
+import Image from "next/image";
 
 export interface PricingTier {
   name: string;
@@ -86,10 +88,31 @@ export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
         </ul>
       </div>
 
-      <Button variant={isHighlighted ? "secondary" : "default"} className="w-full">
-        {tier.cta}
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Button>
+      <Dialog>
+        <DialogTrigger>
+          <Button variant={isHighlighted ? "secondary" : "default"} className="w-full">
+            {tier.cta}
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
+          <DialogHeader>
+            <DialogTitle>购买服务</DialogTitle>
+            <DialogDescription>请添加客服微信购买服务</DialogDescription>
+          </DialogHeader>
+          <div className="max-h-80">
+            <Image
+              src="/wx-pay.jpg"
+              alt="About sponsor"
+              className="h-full w-full overflow-hidden rounded-md object-contain"
+              width="1024"
+              height="1024"
+              unoptimized
+              loading="lazy"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
