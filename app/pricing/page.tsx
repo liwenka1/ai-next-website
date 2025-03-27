@@ -1,6 +1,9 @@
 import { PricingSection } from "@/components/pricing-section";
 
-const PAYMENT_FREQUENCIES = ["monthly", "yearly"];
+const PAYMENT_FREQUENCIES = [
+  { id: "monthly", label: "月付" },
+  { id: "yearly", label: "年付" }
+];
 
 const TIERS = [
   {

@@ -7,16 +7,17 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
 interface TabProps {
+  id: string;
   text: string;
   selected: boolean;
   setSelected: (text: string) => void;
   discount?: boolean;
 }
 
-export function Tab({ text, selected, setSelected, discount = false }: TabProps) {
+export function Tab({ id, text, selected, setSelected, discount = false }: TabProps) {
   return (
     <button
-      onClick={() => setSelected(text)}
+      onClick={() => setSelected(id)}
       className={cn(
         "relative w-fit px-4 py-2 text-sm font-semibold capitalize",
         "text-foreground transition-colors",

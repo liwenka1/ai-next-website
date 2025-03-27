@@ -8,11 +8,14 @@ interface PricingSectionProps {
   title: string;
   subtitle: string;
   tiers: PricingTier[];
-  frequencies: string[];
+  frequencies: {
+    id: string;
+    label: string;
+  }[];
 }
 
 export function PricingSection({ title, subtitle, tiers, frequencies }: PricingSectionProps) {
-  const [selectedFrequency, setSelectedFrequency] = React.useState(frequencies[0]);
+  const [selectedFrequency, setSelectedFrequency] = React.useState(frequencies[0].id);
 
   return (
     <section className="flex flex-col items-center gap-10 py-10">
@@ -24,11 +27,12 @@ export function PricingSection({ title, subtitle, tiers, frequencies }: PricingS
         <div className="bg-muted mx-auto flex w-fit rounded-full p-1">
           {frequencies.map((freq) => (
             <Tab
-              key={freq}
-              text={freq}
-              selected={selectedFrequency === freq}
+              key={freq.id}
+              id={freq.id}
+              text={freq.label}
+              selected={selectedFrequency === freq.id}
               setSelected={setSelectedFrequency}
-              discount={freq === "yearly"}
+              discount={freq.id === "yearly"}
             />
           ))}
         </div>
