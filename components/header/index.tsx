@@ -14,6 +14,7 @@ const Header = () => {
             width="200"
             height="200"
             unoptimized
+            loading="lazy"
           />
           <span className="text-xl font-bold">VVen AI</span>
         </Link>

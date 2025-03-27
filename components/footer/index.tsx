@@ -20,6 +20,7 @@ const Footer = () => {
                 width="200"
                 height="200"
                 unoptimized
+                loading="lazy"
               />
               VVen AI
             </Link>

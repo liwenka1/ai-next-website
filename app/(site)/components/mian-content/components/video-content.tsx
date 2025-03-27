@@ -162,9 +162,24 @@ const VideoContent = () => {
         <CardContent>
           <div className="flex gap-4">
             {imgUrl && (
-              <Image className="h-36 w-auto rounded-md" width="1024" height="1024" src={imgUrl} alt="img" unoptimized />
+              <Image
+                className="h-36 w-auto rounded-md"
+                width="1024"
+                height="1024"
+                src={imgUrl}
+                alt="img"
+                unoptimized
+                loading="lazy"
+              />
             )}
-            <Textarea className="mb-5 h-36 resize-none" value={prompt} onChange={(e) => setPrompt(e.target.value)} />
+            <Textarea
+              id="videoTextarea"
+              aria-label="videoTextarea"
+              aria-labelledby="videoTextarea"
+              className="mb-5 h-36 resize-none"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+            />
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">

@@ -28,7 +28,7 @@ export function NavMenu() {
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/pricing">
+            <Link href="/pricing" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>定价</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

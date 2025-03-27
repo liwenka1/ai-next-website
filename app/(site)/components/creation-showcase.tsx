@@ -83,6 +83,7 @@ const CreationShowcase = () => {
                   width="864"
                   height="1152"
                   unoptimized
+                  loading="lazy"
                 />
               </Link>
             </div>
@@ -90,7 +91,14 @@ const CreationShowcase = () => {
           {videoList.map(({ title, url }) => (
             <div className="w-full cursor-pointer overflow-hidden rounded-md" key={title}>
               <Link href="#videoContent" legacyBehavior passHref>
-                <video src={url} autoPlay loop muted className="w-full rounded-md transition-all hover:scale-105" />
+                <video
+                  src={url}
+                  autoPlay
+                  loop
+                  muted
+                  className="w-full rounded-md transition-all hover:scale-105"
+                  preload="none"
+                />
               </Link>
             </div>
           ))}

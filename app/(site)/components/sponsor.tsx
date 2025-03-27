@@ -19,6 +19,7 @@ const Sponsor = () => {
             width="1024"
             height="1024"
             unoptimized
+            loading="lazy"
           />
         </div>
         <div className="mx-2 h-[300px] max-w-[200px] lg:h-[400px] lg:max-w-[300px]">
@@ -29,6 +30,7 @@ const Sponsor = () => {
             width="1024"
             height="1024"
             unoptimized
+            loading="lazy"
           />
         </div>
       </div>

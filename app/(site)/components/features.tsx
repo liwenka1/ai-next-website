@@ -73,6 +73,7 @@ const Features = () => {
                 width="1024"
                 height="1024"
                 unoptimized
+                loading="lazy"
               />
             </CardFooter>
           </Card>

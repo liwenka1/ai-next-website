@@ -45,11 +45,23 @@ const ImageContent = () => {
           <CardDescription>免费好用的ai生图</CardDescription>
         </CardHeader>
         <CardContent>
-          <Textarea className="mb-5 h-36 resize-none" value={prompt} onChange={(e) => setPrompt(e.target.value)} />
+          <Textarea
+            id="imageTextarea"
+            aria-label="imageTextarea"
+            aria-labelledby="imageTextarea"
+            className="mb-5 h-36 resize-none"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+          />
         </CardContent>
         <CardFooter className="flex justify-between">
           <Select value={size} onValueChange={(v) => setSize(v as BigmodelGenerationsRequest["size"])}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger
+              className="w-[180px]"
+              id="selectSize"
+              aria-label="sizeLabel"
+              aria-labelledby="sizeLabel selectedSize"
+            >
               <SelectValue placeholder="Select a Size" />
             </SelectTrigger>
             <SelectContent>
@@ -83,6 +95,7 @@ const ImageContent = () => {
                   src={imgUrl}
                   alt="img"
                   unoptimized
+                  loading="lazy"
                 />
               ) : (
                 <div className="bg-accent flex h-full w-1/4 items-center justify-center rounded-md">
