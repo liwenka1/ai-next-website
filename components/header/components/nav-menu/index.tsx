@@ -9,10 +9,10 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
-// import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import AuthLogin from "./components/auth-login";
 
-export function NavMenu() {
+const NavMenu = () => {
   return (
     <div className="flex flex-1 items-center justify-between">
       <NavigationMenu>
@@ -41,11 +41,11 @@ export function NavMenu() {
       </NavigationMenu>
 
       <div className="flex items-center gap-4">
-        {/* <Button className="cursor-pointer" type="button">
-          Login
-        </Button> */}
+        <AuthLogin />
         <ModeToggle />
       </div>
     </div>
   );
-}
+};
+
+export default NavMenu;

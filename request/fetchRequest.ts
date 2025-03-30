@@ -1,3 +1,5 @@
+import { useAuthStore } from "@/stores/auth-store";
+
 // 基础配置
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 if (!BASE_URL) throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
@@ -12,6 +14,8 @@ export const fetchRequest = async <T = unknown>(
   endpoint: string,
   { body, headers, method = "GET", ...customConfig }: RequestInit = {}
 ): Promise<T> => {
+  const { accessToken } = useAuthStore.getState();
+
   // 处理 GET 请求的查询参数
   let finalUrl = `${BASE_URL}${endpoint}`;
 
@@ -24,6 +28,7 @@ export const fetchRequest = async <T = unknown>(
     method,
     ...customConfig,
     headers: {
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       ...headers
     }
