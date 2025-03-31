@@ -1,3 +1,6 @@
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
 import { useAuthApi } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -6,8 +9,14 @@ import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/stores/auth-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 // 定义表单验证规则
 const formSchema = z.object({
@@ -25,7 +34,7 @@ const AuthLogin = () => {
     }
   });
 
-  const { accessToken, setAccessToken, setUser } = useAuthStore();
+  const { accessToken, setAccessToken, setUser, logout } = useAuthStore();
   const { login, profile } = useAuthApi();
   // 提交处理
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -38,10 +47,19 @@ const AuthLogin = () => {
   };
 
   return accessToken ? (
-    <Avatar>
-      <AvatarImage src="https://github.com/shadcn.png" />
-      <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>李文凯</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={logout}>退出</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   ) : (
     <Dialog>
       <DialogTrigger asChild>
