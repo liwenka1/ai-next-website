@@ -4,17 +4,15 @@ import { persist, createJSONStorage } from "zustand/middleware";
 interface AuthState {
   accessToken: string | null;
   user: {
-    id?: string;
-    email?: string;
-    name?: string;
-    vipLevel?: number;
-    sub?: number;
+    email: string;
+    name: string;
+    sub: number;
   } | null;
   isLoading: boolean;
 }
 
 interface AuthActions {
-  setAccessToken: (token: string) => void;
+  setAccessToken: (token: AuthState["accessToken"]) => void;
   setUser: (user: AuthState["user"]) => void;
   logout: () => void;
 }

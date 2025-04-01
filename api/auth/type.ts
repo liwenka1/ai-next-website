@@ -9,4 +9,6 @@ export interface LoginRequest {
 
 export interface ProfileResponse {
   sub: number;
+  email: string;
+  name: string;
 }
