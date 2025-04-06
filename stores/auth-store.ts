@@ -7,6 +7,8 @@ interface AuthState {
     email: string;
     name: string;
     sub: number;
+    vipLevel: number;
+    vipExpiresAt: string;
   } | null;
   isLoading: boolean;
 }

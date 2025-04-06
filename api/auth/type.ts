@@ -11,4 +11,6 @@ export interface ProfileResponse {
   sub: number;
   email: string;
   name: string;
+  vipLevel: number;
+  vipExpiresAt: string;
 }
