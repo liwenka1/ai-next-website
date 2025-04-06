@@ -3,7 +3,14 @@ import * as z from "zod";
 
 import { useAuthApi } from "@/api/auth";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/stores/auth-store";
@@ -17,6 +24,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { formatToChineseDateTime } from "@/lib/utils";
+import Image from "next/image";
 
 // 定义表单验证规则
 const formSchema = z.object({
@@ -34,7 +43,7 @@ const AuthLogin = () => {
     }
   });
 
-  const { accessToken, setAccessToken, setUser, logout } = useAuthStore();
+  const { accessToken, user, setAccessToken, setUser, logout } = useAuthStore();
   const { login, profile } = useAuthApi();
   // 提交处理
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -55,7 +64,11 @@ const AuthLogin = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>李文凯</DropdownMenuLabel>
+        <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
+        <DropdownMenuLabel>等级：VIP{user?.vipLevel || 0}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          过期时间：{formatToChineseDateTime(user?.vipExpiresAt || new Date().toDateString())}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={logout}>退出</DropdownMenuItem>
       </DropdownMenuContent>
@@ -65,46 +78,59 @@ const AuthLogin = () => {
       <DialogTrigger asChild>
         <Button variant="outline">登录</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[625px]">
         <DialogHeader>
           <DialogTitle>登录</DialogTitle>
+          <DialogDescription>请添加客服微信购买服务并开通账号</DialogDescription>
         </DialogHeader>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>邮箱</FormLabel>
-                  <FormControl>
-                    <Input placeholder="example@domain.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <div className="sm:flex sm:items-center sm:justify-center sm:gap-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>邮箱</FormLabel>
+                    <FormControl>
+                      <Input placeholder="example@domain.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>密码</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>密码</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="••••••••" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button type="submit" className="w-full">
-              登录
-            </Button>
-          </form>
-        </Form>
+              <Button type="submit" className="w-full">
+                登录
+              </Button>
+            </form>
+          </Form>
+
+          <Image
+            src="/wx-code.jpg"
+            alt="About sponsor"
+            className="h-full max-h-60 w-full basis-3/5 overflow-hidden rounded-md object-contain"
+            width="1024"
+            height="1024"
+            unoptimized
+            loading="lazy"
+          />
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -95,14 +95,14 @@ export function PricingCard({ tier, paymentFrequency }: PricingCardProps) {
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </DialogTrigger>
-        <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>购买服务</DialogTitle>
-            <DialogDescription>请添加客服微信购买服务</DialogDescription>
+            <DialogDescription>请添加客服微信购买服务并开通账号</DialogDescription>
           </DialogHeader>
           <div className="max-h-80">
             <Image
-              src="/wx-pay.jpg"
+              src="/wx-code.jpg"
               alt="About sponsor"
               className="h-full w-full overflow-hidden rounded-md object-contain"
               width="1024"
