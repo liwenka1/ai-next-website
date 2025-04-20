@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
         hostname: "**" // 通配符允许所有域名
       }
     ]
+  },
+  compiler: {
+    removeConsole: true
   }
 };
 
