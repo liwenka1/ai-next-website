@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useRequest } from "ahooks";
 
 import { useAuthApi } from "@/api/auth";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { formatToChineseDateTime } from "@/lib/utils";
 import Image from "next/image";
+import { LoaderCircle } from "lucide-react";
 
 // 定义表单验证规则
 const formSchema = z.object({
@@ -45,14 +47,34 @@ const AuthLogin = () => {
 
   const { accessToken, user, setAccessToken, setUser, logout } = useAuthStore();
   const { login, profile } = useAuthApi();
+  const { loading, run } = useRequest(login, {
+    manual: true,
+    // 推荐在成功回调中处理后续逻辑
+    onSuccess: async (data) => {
+      const { access_token } = data;
+      console.log("获取到的 token:", access_token);
+
+      // 存储 token
+      setAccessToken(access_token);
+
+      try {
+        // 获取用户信息
+        const user = await profile();
+        setUser(user);
+      } catch (error) {
+        console.error("获取用户信息失败:", error);
+        // 这里可以添加错误提示（如 Toast 通知）
+      }
+    },
+    onError: (error) => {
+      console.error("登录失败:", error);
+      // 这里可以添加错误提示（如 Toast 通知）
+    }
+  });
   // 提交处理
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log("提交数据:", values);
-    const { access_token } = await login(values);
-    console.log(access_token, "access_token");
-    setAccessToken(access_token);
-    const user = await profile();
-    setUser(user);
+    run(values); // 等待登录请求完成
   };
 
   return accessToken ? (
@@ -115,7 +137,8 @@ const AuthLogin = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading && <LoaderCircle className="animate-spin" />}
                 登录
               </Button>
             </form>

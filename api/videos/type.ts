@@ -18,7 +18,7 @@ export interface AsyncResultRequest {
 export interface AsyncResultResponse {
   model: string;
   request_id: string;
-  task_status: string;
+  task_status: "PROCESSING" | "SUCCESS" | "FAIL";
   video_result: VideoResult[];
 }
 

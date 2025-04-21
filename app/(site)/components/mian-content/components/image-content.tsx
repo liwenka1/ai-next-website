@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
-import { Loader } from "lucide-react";
+import { Loader, LoaderCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,27 +11,37 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 
 import { useImagesApi } from "@/api/images";
 import type { BigmodelGenerationsRequest } from "@/api/images/type";
+import { useRequest } from "ahooks";
 
 const ImageContent = () => {
   const [prompt, setPrompt] = useState<BigmodelGenerationsRequest["prompt"]>("");
-  const [size, setSize] = useState<BigmodelGenerationsRequest["size"]>("1024x1024");
+  const [size, setSize] = useState<BigmodelGenerationsRequest["image_size"]>("1024x1024");
   const { bigmodelGenerations } = useImagesApi();
   const [imgUrl, setImgUrl] = useState("");
-  const [loading, setLoading] = useState(false);
-  const handleGeneration = async () => {
-    setImgUrl("");
-    setGenerationTitle(prompt);
-    setLoading(true);
-    try {
-      const params: BigmodelGenerationsRequest = { prompt, size };
+
+  const { run, loading } = useRequest(
+    async (params: BigmodelGenerationsRequest) => {
       const res = await bigmodelGenerations(params);
-      console.log(res, "res");
-      setImgUrl(res.data[0].url);
-    } catch (error) {
-      console.log(error, "error");
-    } finally {
-      setLoading(false);
+      return res.data[0].url;
+    },
+    {
+      manual: true,
+      onBefore: () => {
+        setGenerationTitle(prompt); // 生成前设置标题
+      },
+      onSuccess: (url) => {
+        setImgUrl(url); // 成功时更新标题
+      },
+      onError: (error) => {
+        console.error("生成失败:", error);
+        // 可以在这里添加错误提示组件
+      }
     }
+  );
+
+  const handleGeneration = () => {
+    if (!prompt) return;
+    run({ prompt, image_size: size });
   };
 
   const [generationTitle, setGenerationTitle] = useState("");
@@ -55,7 +64,7 @@ const ImageContent = () => {
           />
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Select value={size} onValueChange={(v) => setSize(v as BigmodelGenerationsRequest["size"])}>
+          <Select value={size} onValueChange={(v) => setSize(v as BigmodelGenerationsRequest["image_size"])}>
             <SelectTrigger
               className="w-[180px]"
               id="selectSize"
@@ -76,6 +85,7 @@ const ImageContent = () => {
             </SelectContent>
           </Select>
           <Button type="button" onClick={handleGeneration} disabled={loading || !prompt}>
+            {loading && <LoaderCircle className="animate-spin" />}
             生成
           </Button>
         </CardFooter>

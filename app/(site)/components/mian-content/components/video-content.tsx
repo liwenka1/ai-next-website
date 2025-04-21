@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-
-import { Loader } from "lucide-react";
+import { Loader, LoaderCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -217,6 +216,7 @@ const VideoContent = () => {
             </Dialog>
           </div>
           <Button type="button" onClick={handleGeneration} disabled={loading || (!prompt && !imgUrl)}>
+            {loading && <LoaderCircle className="animate-spin" />}
             生成
           </Button>
         </CardFooter>
