@@ -6,8 +6,7 @@ import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle
+  NavigationMenuList
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "@/components/mode-toggle";
 import AuthLogin from "./components/auth-login";
@@ -19,22 +18,22 @@ const NavMenu = () => {
         <NavigationMenuList>
           <NavigationMenuItem>
             <Link href="#features" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>功能</NavigationMenuLink>
+              <NavigationMenuLink>功能</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="#faq" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>常见问题</NavigationMenuLink>
+              <NavigationMenuLink>常见问题</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/pricing" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>定价</NavigationMenuLink>
+              <NavigationMenuLink>定价</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="#sponsor" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>赞助</NavigationMenuLink>
+              <NavigationMenuLink>赞助</NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
