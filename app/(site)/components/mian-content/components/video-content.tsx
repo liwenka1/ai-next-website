@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Loader, LoaderCircle } from "lucide-react";
+import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -96,6 +97,7 @@ const VideoContent = () => {
           setVideoUrl(res.video_result[0].url);
           setIsPolling(false);
           setLoading(false);
+          toast.success("视频生成成功!");
         } else if (pollingCount < maxRetries) {
           scheduleNextPoll();
         } else {

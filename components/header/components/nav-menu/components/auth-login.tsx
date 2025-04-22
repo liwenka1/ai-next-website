@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useRequest } from "ahooks";
+import { toast } from "react-hot-toast";
 
 import { useAuthApi } from "@/api/auth";
 import { Button } from "@/components/ui/button";
@@ -57,14 +58,9 @@ const AuthLogin = () => {
       // 存储 token
       setAccessToken(access_token);
 
-      try {
-        // 获取用户信息
-        const user = await profile();
-        setUser(user);
-      } catch (error) {
-        console.error("获取用户信息失败:", error);
-        // 这里可以添加错误提示（如 Toast 通知）
-      }
+      const user = await profile();
+      setUser(user);
+      toast.success("登录成功!");
     },
     onError: (error) => {
       console.error("登录失败:", error);

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Loader, LoaderCircle } from "lucide-react";
+import { useRequest } from "ahooks";
+import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +13,6 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 
 import { useImagesApi } from "@/api/images";
 import type { BigmodelGenerationsRequest } from "@/api/images/type";
-import { useRequest } from "ahooks";
 
 const ImageContent = () => {
   const [prompt, setPrompt] = useState<BigmodelGenerationsRequest["prompt"]>("");
@@ -30,7 +31,8 @@ const ImageContent = () => {
         setGenerationTitle(prompt); // 生成前设置标题
       },
       onSuccess: (url) => {
-        setImgUrl(url); // 成功时更新标题
+        setImgUrl(url); // 成功时更新标题、
+        toast.success("图片生成成功!");
       },
       onError: (error) => {
         console.error("生成失败:", error);

@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/stores/auth-store";
+import toast from "react-hot-toast";
 
 // 基础配置
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -8,6 +9,7 @@ export interface ResponseData<T> {
   success: boolean;
   data: T;
   timestamp: string;
+  message: string;
 }
 
 export const fetchRequest = async <T = unknown>(
@@ -54,12 +56,16 @@ export const fetchRequest = async <T = unknown>(
         errorMessage = errorText;
       }
 
+      toast.error(errorMessage);
       throw new Error(errorMessage);
     }
 
-    const result = await (response.json() as Promise<ResponseData<T>>);
+    const { success, data, message } = await (response.json() as Promise<ResponseData<T>>);
 
-    return result.data;
+    if (!success) {
+      toast.error(message);
+    }
+    return data;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`API Error: ${error.message}`);
