@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Loader, LoaderCircle } from "lucide-react";
+import { Loader, LoaderCircle, Download } from "lucide-react";
 import { useRequest } from "ahooks";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
@@ -20,6 +20,43 @@ const ImageContent = () => {
   const [size, setSize] = useState<BigmodelGenerationsRequest["size"]>("1024x1024");
   const { bigmodelGenerations } = useImagesApi();
   const [imgUrl, setImgUrl] = useState("");
+  const [generationTitle, setGenerationTitle] = useState("");
+
+  // 处理图片下载
+  const handleDownload = async () => {
+    if (!imgUrl) return;
+
+    try {
+      // 使用代理API获取图片数据，解决跨域问题
+      const proxyUrl = `/api/proxy?url=${encodeURIComponent(imgUrl)}`;
+      const response = await fetch(proxyUrl);
+
+      if (!response.ok) {
+        throw new Error(`获取图片失败: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+
+      // 创建下载链接
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `ai-image-${Date.now()}.png`;
+
+      // 触发下载
+      document.body.appendChild(link);
+      link.click();
+
+      // 清理
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast.success("图片下载成功!");
+    } catch (error) {
+      console.error("下载失败:", error);
+      toast.error("图片下载失败，请重试!");
+    }
+  };
 
   const { run, loading } = useRequest(
     async (params: BigmodelGenerationsRequest) => {
@@ -46,8 +83,6 @@ const ImageContent = () => {
     if (!prompt) return;
     run({ prompt, size });
   };
-
-  const [generationTitle, setGenerationTitle] = useState("");
 
   return (
     <section id="imageContent" className="relative overflow-hidden py-20 sm:py-28">
@@ -136,15 +171,29 @@ const ImageContent = () => {
                     {imgUrl ? (
                       <>
                         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        <Image
-                          className="h-full w-full rounded-md object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                          width="1024"
-                          height="1024"
-                          src={imgUrl}
-                          alt="AI生成图像"
-                          unoptimized
-                          loading="lazy"
-                        />
+                        <div className="relative h-full w-full">
+                          <Image
+                            className="h-full w-full rounded-md object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                            width="1024"
+                            height="1024"
+                            src={imgUrl}
+                            alt="AI生成图像"
+                            unoptimized
+                            loading="lazy"
+                          />
+                          <Button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDownload();
+                            }}
+                            className="absolute right-4 bottom-4 z-20 rounded-full"
+                            size="icon"
+                            variant="outline"
+                            aria-label="下载图片"
+                          >
+                            <Download />
+                          </Button>
+                        </div>
                       </>
                     ) : (
                       <div className="bg-primary/5 flex h-full w-full items-center justify-center rounded-md">
