@@ -17,7 +17,7 @@ import type { BigmodelGenerationsRequest } from "@/api/images/type";
 
 const ImageContent = () => {
   const [prompt, setPrompt] = useState<BigmodelGenerationsRequest["prompt"]>("");
-  const [size, setSize] = useState<BigmodelGenerationsRequest["image_size"]>("1024x1024");
+  const [size, setSize] = useState<BigmodelGenerationsRequest["size"]>("1024x1024");
   const { bigmodelGenerations } = useImagesApi();
   const [imgUrl, setImgUrl] = useState("");
 
@@ -44,7 +44,7 @@ const ImageContent = () => {
 
   const handleGeneration = () => {
     if (!prompt) return;
-    run({ prompt, image_size: size });
+    run({ prompt, size });
   };
 
   const [generationTitle, setGenerationTitle] = useState("");
@@ -94,7 +94,7 @@ const ImageContent = () => {
               />
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Select value={size} onValueChange={(v) => setSize(v as BigmodelGenerationsRequest["image_size"])}>
+              <Select value={size} onValueChange={(v) => setSize(v as BigmodelGenerationsRequest["size"])}>
                 <SelectTrigger
                   className="border-primary/20 bg-background/80 hover:bg-primary/5 w-[180px] transition-colors"
                   id="selectSize"
