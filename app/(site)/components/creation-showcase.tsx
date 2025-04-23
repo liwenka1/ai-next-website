@@ -44,28 +44,28 @@ const CreationShowcase = () => {
     }
   ];
 
-  const videoList = [
-    // {
-    //   title: "01",
-    //   url: "/example/video/01.mp4"
-    // },
-    {
-      title: "02",
-      url: "/example/video/02.mp4"
-    },
-    {
-      title: "03",
-      url: "/example/video/03.mp4"
-    },
-    {
-      title: "04",
-      url: "/example/video/04.mp4"
-    },
-    {
-      title: "05",
-      url: "/example/video/05.mp4"
-    }
-  ];
+  // const videoList = [
+  //   {
+  //     title: "01",
+  //     url: "/example/video/01.mp4"
+  //   },
+  //   {
+  //     title: "02",
+  //     url: "/example/video/02.mp4"
+  //   },
+  //   {
+  //     title: "03",
+  //     url: "/example/video/03.mp4"
+  //   },
+  //   {
+  //     title: "04",
+  //     url: "/example/video/04.mp4"
+  //   },
+  //   {
+  //     title: "05",
+  //     url: "/example/video/05.mp4"
+  //   }
+  // ];
 
   return (
     <section id="creationShowcase" className="relative overflow-hidden py-24 sm:py-32">
@@ -117,7 +117,7 @@ const CreationShowcase = () => {
             </motion.div>
           ))}
 
-          {videoList.map(({ title, url }, index) => (
+          {/* {videoList.map(({ title, url }, index) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -141,7 +141,7 @@ const CreationShowcase = () => {
                 </div>
               </Link>
             </motion.div>
-          ))}
+          ))} */}
         </motion.div>
       </div>
     </section>

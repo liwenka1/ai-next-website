@@ -33,7 +33,7 @@ const Hero = () => {
 
         <p className="text-foreground/70 flex items-center gap-2 text-base md:text-lg">
           <span className="bg-primary/50 inline-block h-0.5 w-5 rounded-full" />
-          世界首个免费无限制AI图像&视频生成器
+          世界首个免费无限制AI图像生成器
           <span className="bg-primary/50 inline-block h-0.5 w-5 rounded-full" />
         </p>
 

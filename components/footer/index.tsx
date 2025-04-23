@@ -25,7 +25,7 @@ const Footer = () => {
               <span className="from-primary to-primary/70 bg-gradient-to-r bg-clip-text text-transparent">VVen AI</span>
             </Link>
             <p className="text-muted-foreground mb-6 text-base leading-relaxed">
-              VVen AI：完全免费、无限制 AI 图像生成器，视频生成器。无需注册，没有使用限制。
+              VVen AI：完全免费、无限制 AI 图像生成器。无需注册，没有使用限制。
             </p>
             <div className="bg-primary/20 absolute top-0 -right-4 h-24 w-24 rounded-full blur-2xl" />
           </div>
